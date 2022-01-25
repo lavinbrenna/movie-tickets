@@ -76,9 +76,7 @@ $(document).ready(function(){
     const inputtedTime = $("option#new-time:selected").val();
     const inputtedMovie = $("option#new-movie:selected").val();
     let ticket = new Ticket(inputtedAge, inputtedTime, inputtedMovie);
-    console.log(inputtedTime);
     $(".order-total").show();
     $(".price").html(ticket.findPrice());
-    console.log(ticket.findPrice());
   })
 })
