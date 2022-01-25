@@ -1,6 +1,7 @@
-function Ticket(age, time){
+function Ticket(age, time, name){
   this.age = age;
   this.time = time;
+  this.name = name;
   this.price = 0;
 }
 
@@ -18,7 +19,7 @@ Ticket.prototype.findAge = function(age){
 }
 
 Ticket.prototype.findTime = function(time){
-  time = this.time
+  time = this.time;
   if(time > 0 && time < 4 ){
     return "matinee";
   }else{
@@ -26,26 +27,40 @@ Ticket.prototype.findTime = function(time){
   }
 }
 
-Ticket.prototype.findPrice = function(age, time, price){
+Ticket.prototype.findName = function (name){
+  name = this.name;
+  if(name === "belle"){
+    return "first-release"
+  }else if(name ==="kingsman"){
+    return "first-release";
+  }else if(name ==="matrix"){
+    return "second-release";
+  }else{
+    return "second-release";
+  }
+}
+Ticket.prototype.findPrice = function(age, time, price, name){
   age = this.findAge(age);
   time = this.findTime(time);
   price = this.price;
+  name = this.findName(name);
   if(age === "baby"){
     price = 0;
     return price;
-  }else if(age === "child" && time ==="matinee"){
+  }else if(age === "child" && time ==="matinee" || age === "child" && name === 'second-release'){
     price += 8;
     return price;
-  }else if(age === "child" && time === "non-matinee"){
+  }
+  else if(age === "child" && time === "non-matinee"){
     price += 10;
     return price;
-  }else if(age === "adult" && time ==="matinee"){
+  }else if(age === "adult" && time ==="matinee" || age === "adult" && name === 'second-release'){
     price += 10;
     return price;
   }else if(age === "adult" && time === "non-matinee"){
     price += 12
     return price;
-  }else if(age === "senior" && time === "matinee"){
+  }else if(age === "senior" && time === "matinee" || age === "adult" && name === 'second-release'){
     price += 8;
     return price;
   }else{
@@ -58,8 +73,9 @@ $(document).ready(function(){
   $("form#movieForm").submit(function(event){
     event.preventDefault();
     const inputtedAge = $("input#new-age").val();
-    const inputtedTime = $("option:selected").val();
-    let ticket = new Ticket(inputtedAge, inputtedTime);
+    const inputtedTime = $("option#new-time:selected").val();
+    const inputtedMovie = $("option#new-movie:selected").val();
+    let ticket = new Ticket(inputtedAge, inputtedTime, inputtedMovie);
     console.log(inputtedTime);
     $(".order-total").show();
     $(".price").html(ticket.findPrice());
