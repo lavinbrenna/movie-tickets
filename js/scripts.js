@@ -17,14 +17,12 @@ Ticket.prototype.findAge = function(age){
   }
 }
 
-
-
 Ticket.prototype.findTime = function(time){
   time = this.time
   if(time > 0 && time < 4 ){
     return "matinee";
   }else{
-    return "non-matinee"
+    return "non-matinee";
   }
 }
 
@@ -57,5 +55,14 @@ Ticket.prototype.findPrice = function(age, time, price){
 }
 
 $(document).ready(function(){
-  
+  $("form#movieForm").submit(function(event){
+    event.preventDefault();
+    const inputtedAge = $("input#new-age").val();
+    const inputtedTime = $("option:selected").val();
+    let ticket = new Ticket(inputtedAge, inputtedTime);
+    console.log(inputtedTime);
+    $(".order-total").show();
+    $(".price").html(ticket.findPrice());
+    console.log(ticket.findPrice());
+  })
 })
