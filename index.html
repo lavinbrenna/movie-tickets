@@ -37,15 +37,17 @@
       <div class="form-group">
         <label for="movie">Movie</label>
         <select id="movie">
-          <option value="belle" id="new-movie">Belle</option>
-          <option value="kingsman" id="new-movie">The King's Man</option>
-          <option value="matrix" id="new-movie">The Matrix Resurrections</option>
-          <option value="spiderman" id="new-movie">Spiderman: No Way Home</option>
+          <option value="0" id="new-movie">Belle</option>
+          <option value="1" id="new-movie">The King's Man</option>
+          <option value="2" id="new-movie">The Matrix Resurrections</option>
+          <option value="3" id="new-movie">Spiderman: No Way Home</option>
         </select>
       </div>
-      <button type="submit">Purchase Tickets</button>
+      <button type="submit">Add to cart</button>
     </form>
     <div class="order-total">
+      <ul id="tickets">
+      </ul>
       <p>Your order total is $<span class="price"></span></p>
     </div>
   </div>
